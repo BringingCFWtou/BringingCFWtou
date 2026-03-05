@@ -1,7 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BringingCFWtou</title>
+<style type="text/css">
+  body {
+    background-color: #1a1a1a;
+    color: #cccccc;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+  }
+  a { color: #4ea8de; text-decoration: underline; }
+  a:hover { color: #ff9900; text-decoration: none; }
+  a:visited { color: #9966cc; }
+
+  #header {
+    background: #000;
+    border-bottom: 2px solid #ff6600;
+    padding: 12px 0 8px 0;
+    text-align: center;
+  }
+  #header h1 {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ff6600;
+    margin: 0;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #ff6600;
+  }
+  #header .tagline {
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 3px;
+    margin-top: 5px;
+    font-family: "Courier New", Courier, monospace;
+  }
+  #header .slogan {
+    font-size: 11px;
+    color: #999;
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  #navbar {
+    background: #111;
+    border-bottom: 1px solid #333;
+    padding: 5px 10px;
+  }
+  #navbar a {
+    color: #aaa;
+    text-decoration: none;
+    margin-right: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-family: Tahoma, sans-serif;
+  }
+  #navbar a:hover { color: #ff6600; }
+
+  #wrapper { width: 780px; margin: 12px auto; }
+  #main-content { width: 540px; float: left; }
+  #sidebar { width: 210px; float: right; }
+
+  .box { background: #222; border: 1px solid #444; margin-bottom: 12px; }
+  .box-title {
+    background: #333;
+    border-bottom: 1px solid #555;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ff6600;
+    font-family: Tahoma, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .box-title span { color: #888; font-weight: normal; text-transform: none; letter-spacing: 0; }
+  .box-content { padding: 8px 10px; line-height: 1.6; }
+
+  /* Project listing on homepage */
+  .project-entry {
+    border: 1px solid #333;
+    background: #1c1c1c;
+    margin-bottom: 8px;
+    padding: 8px 10px;
+  }
+  .project-entry:hover { border-color: #555; background: #202020; }
+  .project-entry h3 {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    font-family: Tahoma, sans-serif;
+    color: #ff9900;
+  }
+  .project-entry h3 a { color: #ff9900; text-decoration: none; }
+  .project-entry h3 a:hover { color: #ffcc00; text-decoration: underline; }
+  .project-entry p { margin: 0; color: #aaa; font-size: 11px; line-height: 1.5; }
+
+  .label {
+    display: inline-block;
+    background: #333;
+    color: #aaa;
+    font-size: 9px;
+    padding: 1px 5px;
+    border: 1px solid #555;
+    font-family: Tahoma, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 4px;
+  }
+  .label.green  { background: #003300; color: #33cc33; border-color: #336633; }
+  .label.orange { background: #2a1500; color: #ff9900; border-color: #664400; }
+  .label.grey   { background: #252525; color: #777;    border-color: #444;    }
+  .label.blue   { background: #001133; color: #4ea8de; border-color: #003366; }
+
+  .warning { background: #2a1a00; border: 1px solid #ff6600; padding: 8px 10px; margin-bottom: 10px; font-size: 11px; }
+  .warning strong { color: #ff6600; }
+  .info    { background: #001a2a; border: 1px solid #4ea8de; padding: 8px 10px; margin-bottom: 10px; font-size: 11px; }
+  .info strong { color: #4ea8de; }
+  .success { background: #001a00; border: 1px solid #33aa33; padding: 8px 10px; margin-bottom: 10px; font-size: 11px; }
+  .success strong { color: #33aa33; }
+
+  table.data { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 8px; }
+  table.data th { background: #2a2a2a; border: 1px solid #444; padding: 4px 8px; color: #ff9900; text-align: left; font-size: 10px; text-transform: uppercase; }
+  table.data td { border: 1px solid #333; padding: 5px 8px; vertical-align: top; }
+  table.data tr:nth-child(even) td { background: #1e1e1e; }
+  table.data tr:hover td { background: #282828; }
+
+  .codebox {
+    background: #0d0d0d;
+    border: 1px solid #333;
+    border-left: 3px solid #ff6600;
+    padding: 8px 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    color: #ccff00;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    line-height: 1.7;
+  }
+
+  ol.steps { padding-left: 20px; margin: 0; }
+  ol.steps li { margin-bottom: 8px; line-height: 1.6; font-size: 11px; }
+  ol.steps li strong { color: #ff9900; }
+
+  .sidebar-box { background: #1e1e1e; border: 1px solid #333; margin-bottom: 10px; font-size: 11px; }
+  .sidebar-title { background: #2a2a2a; border-bottom: 1px solid #444; padding: 4px 7px; font-size: 10px; font-weight: bold; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+  .sidebar-content { padding: 7px; line-height: 1.7; }
+  .sidebar-content ul { margin: 0; padding-left: 14px; }
+  .sidebar-content li { margin-bottom: 3px; }
+
+  .blink { animation: blinker 1.2s step-end infinite; color: #ff6600; font-weight: bold; }
+  @keyframes blinker { 50% { opacity: 0; } }
+
+  hr.divider { border: none; border-top: 1px solid #333; margin: 10px 0; }
+
+  h2 { font-size: 13px; color: #ff9900; font-family: Tahoma, sans-serif; border-bottom: 1px dotted #444; padding-bottom: 4px; margin: 12px 0 8px 0; }
+  h3 { font-size: 11px; color: #cccccc; margin: 10px 0 5px 0; font-family: Tahoma, sans-serif; }
+
+  /* Page switcher — hides/shows sections */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* breadcrumb */
+  #breadcrumb {
+    font-size: 10px;
+    color: #555;
+    padding: 4px 0 8px 0;
+    font-family: "Courier New", Courier, monospace;
+  }
+  #breadcrumb a { color: #666; }
+  #breadcrumb a:hover { color: #ff9900; }
+
+  #footer {
+    clear: both;
+    border-top: 1px solid #333;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 10px;
+    color: #555;
+    font-family: "Courier New", Courier, monospace;
+    margin-top: 10px;
+  }
+  #footer strong { color: #ff6600; }
+</style>
 </head>
 <body>
-<h1>BringingCFWtou</h1>
+
+<!-- HEADER -->
+<div id="header">
+  <h1>[ BringingCFWtou ]</h1>
+  <div class="tagline">:: CUSTOM FIRMWARE FOR EVERYONE ::</div>
+  <div class="slogan">We bring the CFW — You keep the freedom.</div>
+</div>
+
+<!-- NAVBAR -->
+<div id="navbar">
+  <a href="#" onclick="showPage('home'); return false;">Home</a>
+  <a href="#" onclick="showPage('projects'); return false;">Alle Projekte</a>
+  <a href="#" onclick="showPage('about'); return false;">About</a>
+  <a href="#" onclick="showPage('contact'); return false;">Kontakt</a>
+  <span style="float:right; color:#444; font-size:10px; font-family:'Courier New',monospace;">BringingCFWtou &copy; 2024</span>
+</div>
+
+<div id="wrapper">
+  <div id="main-content">
+
+    <!-- ==================== HOME ==================== -->
+    <div id="page-home" class="page active">
+
+      <div id="breadcrumb">
+        <a href="#" onclick="showPage('home');return false;">Home</a>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Willkommen bei BringingCFWtou</div>
+        <div class="box-content">
+          <p style="margin-top:0"><strong style="color:#ff9900;">BringingCFWtou</strong> ist deine Anlaufstelle für Custom Firmware, Region-Hacks und Modifikationen. Wir dokumentieren CFW-Projekte für verschiedene Geräte — verständlich, kostenlos, für alle.</p>
+          <div class="info">
+            <strong>[ MISSION ]</strong> &mdash; Dein Gerät. Deine Regeln. Keine Paywalls, keine gesperrten Guides. Freiheit über Hardware beginnt mit Wissen.
+          </div>
+          <p>Wähle unten ein Projekt oder klicke auf <strong>Alle Projekte</strong> in der Navigation.</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Aktuelle Projekte <span>// verfügbare CFWs</span></div>
+        <div class="box-content">
+
+          <div class="project-entry">
+            <h3><a href="#" onclick="showPage('dmp-bdt310eg'); return false;">&#9658; Panasonic DMP-BDT310EG</a> &nbsp;<span class="label green">Aktiv</span></h3>
+            <p>Region-Free CFW via Firmware-Flash (CD) + IR-Hack via Universal Remote. Schaltet DVD Region 1–6 und Blu-ray A/B/C frei.</p>
+          </div>
+
+          <div class="project-entry" style="opacity:0.55;">
+            <h3>&#9658; [Weitere Projekte folgen] &nbsp;<span class="label grey">Bald</span></h3>
+            <p>Neue CFW-Guides werden laufend hinzugefügt. Schau regelmäßig vorbei oder meld dich über Kontakt wenn du ein Gerät anfragen möchtest.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Neuigkeiten <span>// News &amp; Updates</span></div>
+        <div class="box-content">
+          <table class="data">
+            <tr><th>Datum</th><th>Eintrag</th></tr>
+            <tr><td style="white-space:nowrap;">2024-03</td><td>Panasonic DMP-BDT310EG Guide veröffentlicht — CFW + IR-Hack vollständig dokumentiert.</td></tr>
+            <tr><td style="white-space:nowrap;">2024-03</td><td>BringingCFWtou geht online. Weitere Projekte in Vorbereitung.</td></tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <!-- END HOME -->
+
+    <!-- ==================== PROJECTS LIST ==================== -->
+    <div id="page-projects" class="page">
+
+      <div id="breadcrumb-projects" class="breadcrumb-bar">
+        <span id="bc-projects"><a href="#" onclick="showPage('home');return false;">Home</a> &raquo; Alle Projekte</span>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Alle Projekte <span>// CFW-Übersicht</span></div>
+        <div class="box-content">
+
+          <table class="data">
+            <tr>
+              <th>Gerät</th>
+              <th>Typ</th>
+              <th>Status</th>
+              <th>Link</th>
+            </tr>
+            <tr>
+              <td><strong>Panasonic DMP-BDT310EG</strong></td>
+              <td>Blu-ray Player</td>
+              <td><span class="label green">Aktiv</span></td>
+              <td><a href="#" onclick="showPage('dmp-bdt310eg'); return false;">Guide öffnen</a></td>
+            </tr>
+            <tr style="opacity:0.5;">
+              <td><em>Weitere folgen...</em></td>
+              <td>—</td>
+              <td><span class="label grey">Geplant</span></td>
+              <td>—</td>
+            </tr>
+          </table>
+
+          <div class="info">
+            <strong>[ HINWEIS ]</strong> &mdash; Du hast ein Gerät für das du einen Guide anfragen willst? Schreib uns über die <a href="#" onclick="showPage('contact');return false;">Kontakt-Seite</a>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- END PROJECTS -->
+
+    <!-- ==================== DMP-BDT310EG ==================== -->
+    <div id="page-dmp-bdt310eg" class="page">
+
+      <div class="breadcrumb-bar" style="font-size:10px;color:#555;padding:4px 0 8px 0;font-family:'Courier New',monospace;">
+        <a href="#" onclick="showPage('home');return false;" style="color:#666;">Home</a> &raquo;
+        <a href="#" onclick="showPage('projects');return false;" style="color:#666;">Projekte</a> &raquo;
+        <span style="color:#aaa;">Panasonic DMP-BDT310EG</span>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Panasonic DMP-BDT310EG <span>// Region-Free CFW Guide</span></div>
+        <div class="box-content">
+          <p style="margin-top:0">Komplette Dokumentation für Custom Firmware und Region-Hacks auf dem <strong>Panasonic DMP-BDT310EG</strong> (Blu-ray Player, Europa-Modell).</p>
+          <div class="warning">
+            <strong>[ WARNUNG ]</strong> — Das Modifizieren deines Gerätes kann die Garantie erlöschen lassen. Notiere vorher Firmware-Version und MAC-Adresse. Du machst alles auf eigene Verantwortung.
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Gerät &amp; Firmware-Info</div>
+        <div class="box-content">
+          <table class="data">
+            <tr><th>Eigenschaft</th><th>Wert</th></tr>
+            <tr><td><strong>Modell</strong></td><td>Panasonic DMP-BDT310EG</td></tr>
+            <tr><td><strong>Region ab Werk</strong></td><td>Blu-ray Region B &nbsp;/&nbsp; DVD Region 2</td></tr>
+            <tr><td><strong>Firmware anzeigen</strong></td><td>Setup &rarr; System &rarr; Firmware-Version</td></tr>
+            <tr><td><strong>LAN-MAC finden</strong></td><td>Setup &rarr; Netzwerk &rarr; Netzwerkkonfiguration<br>(ggf. von WLAN auf LAN umschalten)</td></tr>
+            <tr><td><strong>Modell-Varianten</strong></td><td>DMP-BDT310-EG-K &nbsp;/&nbsp; EG-S &nbsp;/&nbsp; EG-W</td></tr>
+          </table>
+          <div class="info">
+            <strong>[ INFO ]</strong> &mdash; &quot;EG&quot; steht für Europa/UK/CIS. Dieser Guide gilt ausschließlich für EG-Modelle.
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Methode 1: Region-Free CFW via CD <span class="label green">Empfohlen</span></div>
+        <div class="box-content">
+          <p>Modifizierte Firmware wird per CD auf den Player geflasht. Schaltet dauerhaft alle DVD- und Blu-ray-Regionen frei. Benötigt eine personalisierte <code>PANA_DVD.FRM</code> Datei die für dein spezifisches Gerät erstellt wird.</p>
+
+          <div class="warning">
+            <strong>[ BENÖTIGT ]</strong><br>
+            &bull; Aktuelle Firmware-Version<br>
+            &bull; LAN-MAC-Adresse (nicht WLAN-MAC!)<br>
+            &bull; Genaue Modellbezeichnung (z.B. DMP-BDT310-EG-K)<br>
+            &bull; Leerer CD-R oder CD-RW + CD-Brenner
+          </div>
+
+          <h2>Schritt-für-Schritt</h2>
+          <ol class="steps">
+            <li><strong>Infos sammeln:</strong><br>
+              Setup &rarr; Netzwerk &rarr; Netzwerkkonfiguration: <strong>LAN-MAC notieren</strong>.<br>
+              Setup &rarr; System: <strong>Firmware-Version notieren</strong>.<br>
+              Modell-Buchstaben auf Geräterückseite nachschauen.
+            </li>
+            <li><strong>CFW anfordern:</strong><br>
+              Kontaktiere den CFW-Anbieter (z.B. <a href="https://www.highdefinition.ch" target="_blank">highdefinition.ch</a>) mit Modell, MAC und Firmware-Version. Du bekommst eine personalisierte <code>.zip</code>-Datei.
+            </li>
+            <li><strong>PANA_DVD.FRM auf CD brennen:</strong><br>
+              ZIP entpacken. <code>PANA_DVD.FRM</code> direkt ins Root der CD brennen — <strong>nicht in einen Unterordner</strong>.<br>
+              Windows: Rechtsklick auf die .FRM-Datei &rarr; &quot;Senden an&quot; &rarr; CD/DVD-Laufwerk.
+            </li>
+            <li><strong>Firmware flashen:</strong><br>
+              CD in den Player einlegen. Player erkennt die Firmware automatisch. <strong>WÄHREND des Flashens niemals Strom trennen!</strong> Player startet danach neu.
+            </li>
+            <li><strong>Online-Updates deaktivieren:</strong><br>
+              Setup &rarr; Netzwerk &rarr; Firmware-Update: <strong>AUS</strong>. Sonst überschreibt ein offizielles Update den Mod.
+            </li>
+          </ol>
+
+          <div class="success">
+            <strong>[ ERGEBNIS ]</strong> &mdash; Player spielt jetzt DVD Region 1–6 und Blu-ray A/B/C ab. Mod ist dauerhaft.
+          </div>
+
+          <div class="codebox">Setup → Netzwerk → Firmware-Update → AUS
+→ Mit OK bestätigen</div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">Methode 2: IR-Hack via Universal Remote <span class="label orange">Ohne CFW</span></div>
+        <div class="box-content">
+          <p>Per programmiertem Universal-Remote (Logitech Harmony oder One for All) wird eine IR-Sequenz gesendet, die den Service-Modus aktiviert. Kein Flashen notwendig.</p>
+
+          <div class="info">
+            <strong>[ BESTÄTIGT ]</strong> &mdash; Funktioniert auf DMP-BDT310EG mit Harmony 880 und Harmony One. Schaltet DVD 1–6 und Blu-ray A+B+C frei.
+          </div>
+
+          <h2>IR-Sequenz (10 Codes)</h2>
+          <p style="font-size:10px; color:#888; margin-bottom:4px;">Je 500ms Pause zwischen den Codes. Reihenfolge genau einhalten!</p>
+
+          <table class="data">
+            <tr><th>#</th><th>Funktion</th><th>Hex-Code</th></tr>
+            <tr><td>1</td><td>ENTER</td><td><code>00191</code></td></tr>
+            <tr><td>2</td><td>6</td><td><code>00120</code></td></tr>
+            <tr><td>3</td><td>&gt;=10</td><td><code>00065</code></td></tr>
+            <tr><td>4</td><td>&lt;&lt; (Rücklauf)</td><td><code>00180</code></td></tr>
+            <tr><td>5</td><td>Service Key</td><td><code>00143</code></td></tr>
+            <tr><td>6</td><td>AUDIO</td><td><code>00155</code></td></tr>
+            <tr><td>7</td><td>8</td><td><code>00122</code></td></tr>
+            <tr><td>8</td><td>1</td><td><code>00117</code></td></tr>
+            <tr><td>9</td><td>SUBTITLE</td><td><code>00129</code></td></tr>
+            <tr><td>10</td><td>4</td><td><code>00123</code></td></tr>
+          </table>
+
+          <h2>Harmony-Setup</h2>
+          <ol class="steps">
+            <li>Gerät &quot;Panasonic DMP-BDT310&quot; in Harmony Software hinzufügen.</li>
+            <li>Jeden der 10 Hex-Codes als eigenen Befehl anlegen.</li>
+            <li>Neue Activity erstellen, alle 10 Befehle in Reihenfolge mit je <strong>500ms Pause</strong>.</li>
+            <li>Player einschalten, Activity starten. Automatischer Neustart = Erfolg.</li>
+          </ol>
+
+          <div class="warning">
+            <strong>[ TIPP ]</strong> &mdash; Falls Activity nicht klappt: Buttons am Touchscreen <strong>manuell</strong> nacheinander drücken. Hat bei mehreren Nutzern besser funktioniert.
+          </div>
+
+          <h3>Blu-ray Bypass-Trick (ohne Remote)</h3>
+          <div class="codebox">1. Disc einlegen → "Falsche Region" abwarten
+2. STOP drücken
+3. 1 → ENTER (oder OK)
+4. Bei Fehler: Schritt 2–3 wiederholen</div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">FAQ</div>
+        <div class="box-content">
+          <h3>Q: Welche Methode soll ich nehmen?</h3>
+          <p>Dauerhaft alle Regionen → <strong>Methode 1 (CFW)</strong>. Kein CD-Brenner oder nur DVDs nötig → <strong>Methode 2 (IR-Hack)</strong>.</p>
+          <hr class="divider">
+          <h3>Q: Brick-Risiko?</h3>
+          <p>IR-Hack: praktisch kein Risiko. CFW-Flash: gering, solange CD korrekt gebrannt und kein Stromabbruch. Trotzdem auf eigene Verantwortung.</p>
+          <hr class="divider">
+          <h3>Q: Sub-Modell unbekannt (EG-K, EG-S...)?</h3>
+          <p>Typenschild auf der Geräterückseite prüfen. Alternativ den CFW-Anbieter mit der Seriennummer kontaktieren.</p>
+          <hr class="divider">
+          <h3>Q: Normale Discs funktionieren noch?</h3>
+          <p>Ja. CFW ändert nur die Region-Beschränkung, alles andere bleibt unverändert.</p>
+          <hr class="divider">
+          <h3>Q: Harmony Activity klappt nicht.</h3>
+          <p>Buttons am Touchscreen manuell nacheinander drücken, 500ms Pause einhalten.</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- END DMP-BDT310EG -->
+
+    <!-- ==================== ABOUT ==================== -->
+    <div id="page-about" class="page">
+      <div class="breadcrumb-bar" style="font-size:10px;color:#555;padding:4px 0 8px 0;font-family:'Courier New',monospace;">
+        <a href="#" onclick="showPage('home');return false;" style="color:#666;">Home</a> &raquo; About
+      </div>
+      <div class="box">
+        <div class="box-title">About BringingCFWtou</div>
+        <div class="box-content">
+          <p style="margin-top:0"><strong style="color:#ff9900;">BringingCFWtou</strong> ist ein unabhängiges Projekt mit einer klaren Mission: Custom Firmware, Jailbreaks und Region-Hacks für alle zugänglich machen.</p>
+          <p>Kein Paywall. Kein Discord-Gate. Keine bezahlten Guides. Einfach ehrliche, funktionierende Dokumentation.</p>
+          <p>Wir decken verschiedene Geräte ab — Blu-ray Player, Konsolen, Embedded-Systeme, und mehr. Jedes neue Projekt kommt hinzu sobald es vollständig dokumentiert ist.</p>
+          <div class="info">
+            <strong>[ PHILOSOPHIE ]</strong> &mdash; Wenn du ein Gerät kaufst, gehört es dir. Wirklich dir. Software-Freiheit ist kein Luxus — sie ist ein Recht. Wir helfen dir es durchzusetzen.
+          </div>
+          <p>Guides werden auf eigene Verantwortung genutzt. BringingCFWtou haftet nicht für Schäden die durch Modifikationen entstehen. Alle Inhalte dienen ausschließlich zu Bildungszwecken.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== CONTACT ==================== -->
+    <div id="page-contact" class="page">
+      <div class="breadcrumb-bar" style="font-size:10px;color:#555;padding:4px 0 8px 0;font-family:'Courier New',monospace;">
+        <a href="#" onclick="showPage('home');return false;" style="color:#666;">Home</a> &raquo; Kontakt
+      </div>
+      <div class="box">
+        <div class="box-title">Kontakt</div>
+        <div class="box-content">
+          <p style="margin-top:0">Du hast Fragen, Korrekturen oder möchtest ein Gerät für einen neuen Guide anfragen?</p>
+          <div class="info">
+            <strong>[ ANFRAGEN ]</strong> &mdash; Geräteanfragen gerne mit folgenden Infos:<br>
+            &bull; Genaue Modellbezeichnung<br>
+            &bull; Was du erreichen willst (region-free, homebrew, ...)<br>
+            &bull; Aktuelle Firmware-Version falls bekannt
+          </div>
+          <p>Kontakt läuft über das <a href="#">Forum</a> oder direkt per E-Mail (Adresse folgt).</p>
+          <div class="warning">
+            <strong>[ BITTE BEACHTEN ]</strong> &mdash; Wir beantworten keine Fragen die auf kommerzielle Piraterie abzielen. Nur Eigengebrauch und Bildungszwecke.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9658; Schnellnavigation</div>
+      <div class="sidebar-content">
+        <ul>
+          <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
+          <li><a href="#" onclick="showPage('projects');return false;">Alle Projekte</a></li>
+          <li><a href="#" onclick="showPage('about');return false;">About</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9658; CFW Projekte</div>
+      <div class="sidebar-content">
+        <ul>
+          <li><a href="#" onclick="showPage('dmp-bdt310eg');return false;">Panasonic DMP-BDT310EG</a> <span class="label green">&#10003;</span></li>
+          <li><span style="color:#555;"><em>Weitere folgen...</em></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9658; Site-Status</div>
+      <div class="sidebar-content">
+        <span class="blink">&#9679;</span> Online<br>
+        <span style="color:#33aa33;">&#10003;</span> 1 aktiver Guide<br>
+        <span style="color:#ffaa00;">&#9900;</span> Weitere in Arbeit
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9658; Über uns</div>
+      <div class="sidebar-content" style="font-size:10px; line-height:1.6;">
+        <strong style="color:#ff9900;">BringingCFWtou</strong><br>
+        Unabhängige CFW-Dokumentation.<br>
+        Kostenlos. Für alle.<br><br>
+        <em style="color:#666;">&quot;Dein Gerät. Deine Regeln.&quot;</em>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9658; Nützliche Links</div>
+      <div class="sidebar-content">
+        <ul>
+          <li><a href="https://www.videohelp.com" target="_blank">VideoHelp.com</a></li>
+          <li><a href="https://www.avforums.com" target="_blank">AVForums</a></li>
+          <li><a href="https://www.highdefinition.ch" target="_blank">highdefinition.ch</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- END SIDEBAR -->
+
+</div>
+<!-- END WRAPPER -->
+
+<div id="footer">
+  <strong>BringingCFWtou</strong> &mdash; Custom Firmware for Everyone &mdash; for educational purposes only<br>
+  <a href="#" onclick="showPage('home');return false;">Home</a> ::
+  <a href="#" onclick="showPage('projects');return false;">Projekte</a> ::
+  <a href="#" onclick="showPage('about');return false;">About</a> ::
+  <a href="#" onclick="showPage('contact');return false;">Kontakt</a>
+</div>
+
+<script type="text/javascript">
+  function showPage(id) {
+    var pages = document.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove('active');
+    }
+    var target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+    }
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
 </html>
