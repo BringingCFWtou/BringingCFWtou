@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>BringingCFWtou</title>
+<style type="text/css">
+  * { box-sizing: border-box; }
+  body { background-color:#1a1a1a; color:#cccccc; font-family:Verdana,Tahoma,sans-serif; font-size:13px; margin:0; padding:0; }
+  a { color:#4ea8de; text-decoration:underline; }
+  a:hover { color:#ff9900; text-decoration:none; }
+  a:visited { color:#9966cc; }
+
+  #header { background:#000; border-bottom:2px solid #ff6600; padding:10px 0 7px 0; text-align:center; }
+  #header h1 { font-family:"Courier New",Courier,monospace; font-size:20px; font-weight:bold; color:#ff6600; margin:0; letter-spacing:3px; text-shadow:0 0 8px #ff6600; }
+  #header .tagline { font-size:9px; color:#666; letter-spacing:2px; margin-top:4px; font-family:"Courier New",Courier,monospace; }
+  #header .slogan { font-size:10px; color:#999; margin-top:2px; font-style:italic; }
+  #header .switchlink { font-size:9px; color:#444; margin-top:4px; font-family:"Courier New",monospace; }
+  #header .switchlink a { color:#444; }
+  #header .switchlink a:hover { color:#ff6600; }
+
+  /* Mobile hamburger nav */
+  #mobile-nav { background:#111; border-bottom:1px solid #333; }
+  #mobile-nav-toggle { width:100%; background:#111; border:none; border-bottom:1px solid #222; color:#ff6600; font-family:"Courier New",Courier,monospace; font-size:14px; padding:11px 14px; text-align:left; cursor:pointer; letter-spacing:2px; }
+  #mobile-nav-toggle:active { background:#181818; }
+  #mobile-nav-links { display:none; }
+  #mobile-nav-links a { display:block; color:#aaa; text-decoration:none; padding:11px 18px; font-size:13px; font-family:Tahoma,sans-serif; font-weight:bold; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #222; }
+  #mobile-nav-links a:active { color:#ff6600; background:#181818; }
+
+  #wrapper { width:100%; padding:8px 10px; }
+
+  .box { background:#222; border:1px solid #444; margin-bottom:12px; }
+  .box-title { background:#333; border-bottom:1px solid #555; padding:6px 10px; font-size:11px; font-weight:bold; color:#ff6600; font-family:Tahoma,sans-serif; text-transform:uppercase; letter-spacing:1px; }
+  .box-title span { color:#888; font-weight:normal; text-transform:none; letter-spacing:0; }
+  .box-content { padding:10px 12px; line-height:1.7; }
+
+  .warning { background:#2a1a00; border:1px solid #ff6600; padding:10px 12px; margin-bottom:10px; font-size:12px; }
+  .warning strong { color:#ff6600; }
+  .info { background:#001a2a; border:1px solid #4ea8de; padding:10px 12px; margin-bottom:10px; font-size:12px; }
+  .info strong { color:#4ea8de; }
+  .success { background:#001a00; border:1px solid #33aa33; padding:10px 12px; margin-bottom:10px; font-size:12px; }
+  .success strong { color:#33aa33; }
+  .wip { background:#1a1a00; border:1px solid #cccc00; padding:10px 12px; margin-bottom:10px; font-size:12px; }
+  .wip strong { color:#cccc00; }
+
+  /* Tables scroll horizontally on mobile */
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:8px; }
+  table.data { min-width:340px; width:100%; border-collapse:collapse; font-size:11px; }
+  table.data th { background:#2a2a2a; border:1px solid #444; padding:5px 8px; color:#ff9900; text-align:left; font-size:10px; text-transform:uppercase; }
+  table.data td { border:1px solid #333; padding:6px 8px; vertical-align:top; }
+  table.data tr:nth-child(even) td { background:#1e1e1e; }
+
+  .codebox { background:#0d0d0d; border:1px solid #333; border-left:3px solid #ff6600; padding:10px 12px; font-family:"Courier New",Courier,monospace; font-size:11px; color:#ccff00; margin:8px 0; white-space:pre-wrap; line-height:1.7; overflow-x:auto; }
+
+  ol.steps { padding-left:18px; margin:0; }
+  ol.steps li { margin-bottom:10px; line-height:1.7; font-size:12px; }
+  ol.steps li strong { color:#ff9900; }
+
+  .label { display:inline-block; background:#333; color:#aaa; font-size:9px; padding:2px 6px; border:1px solid #555; font-family:Tahoma,sans-serif; text-transform:uppercase; letter-spacing:1px; margin-right:4px; }
+  .label.green  { background:#003300; color:#33cc33; border-color:#336633; }
+  .label.orange { background:#2a1500; color:#ff9900; border-color:#664400; }
+  .label.grey   { background:#252525; color:#777; border-color:#444; }
+  .label.yellow { background:#1a1a00; color:#cccc00; border-color:#666600; }
+
+  .project-entry { border:1px solid #333; background:#1c1c1c; margin-bottom:10px; padding:10px 12px; }
+  .project-entry h3 { margin:0 0 5px 0; font-size:13px; font-family:Tahoma,sans-serif; color:#ff9900; }
+  .project-entry h3 a { color:#ff9900; text-decoration:none; }
+  .project-entry p { margin:0; color:#aaa; font-size:12px; line-height:1.6; }
+
+  .progress-wrap { background:#111; border:1px solid #333; height:16px; margin:8px 0 4px 0; }
+  .progress-bar  { background:#cccc00; height:100%; width:8%; }
+  .progress-label { font-size:10px; color:#888; font-family:"Courier New",monospace; }
+
+  /* Accordion-style collapsible sections for mobile */
+  .accordion-toggle {
+    width:100%; background:#2a2a2a; border:none; border-top:1px solid #333;
+    color:#ff9900; font-family:Tahoma,sans-serif; font-size:12px; font-weight:bold;
+    padding:9px 12px; text-align:left; cursor:pointer; text-transform:uppercase;
+    letter-spacing:1px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .accordion-toggle:active { background:#333; }
+  .accordion-toggle .arr { color:#555; font-size:10px; }
+  .accordion-toggle.open .arr { color:#ff9900; }
+  .accordion-body { display:none; border-top:1px solid #222; }
+  .accordion-body.open { display:block; }
+
+  .blink { animation:blinker 1.2s step-end infinite; color:#ff6600; font-weight:bold; }
+  .blink-yellow { animation:blinker 1.2s step-end infinite; color:#cccc00; font-weight:bold; }
+  @keyframes blinker { 50% { opacity:0; } }
+  hr.divider { border:none; border-top:1px solid #333; margin:10px 0; }
+  h2 { font-size:13px; color:#ff9900; font-family:Tahoma,sans-serif; border-bottom:1px dotted #444; padding-bottom:4px; margin:12px 0 8px 0; }
+  h3 { font-size:12px; color:#cccccc; margin:10px 0 5px 0; font-family:Tahoma,sans-serif; }
+  .breadcrumb { font-size:10px; color:#555; padding:5px 0 8px 0; font-family:"Courier New",Courier,monospace; }
+  .breadcrumb a { color:#666; }
+
+
+  a[href*="discord.gg"] { color: #7289da; }
+  a[href*="discord.gg"]:hover { color: #9eaff0; }
+
+  .page { display:none; }
+  .page.active { display:block; }
+
+  #footer { border-top:1px solid #333; padding:12px 10px; text-align:center; font-size:10px; color:#555; font-family:"Courier New",Courier,monospace; margin-top:6px; line-height:1.9; }
+  #footer strong { color:#ff6600; }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1>[ BringingCFWtou ]</h1>
+  <div class="tagline">:: CUSTOM FIRMWARE FOR EVERYONE ::</div>
+  <div class="slogan">We bring the CFW &mdash; You keep the freedom.</div>
+  <div class="switchlink">[ <a href="desktop.html">Switch to desktop version</a> ]</div>
+</div>
+
+<div id="mobile-nav">
+  <button id="mobile-nav-toggle" onclick="toggleMenu()">&#9776; &nbsp;MENU</button>
+  <div id="mobile-nav-links">
+    <a href="#" onclick="showPage('home');toggleMenu();return false;">&#9658; Home</a>
+    <a href="#" onclick="showPage('projects');toggleMenu();return false;">&#9658; All Projects</a>
+    <a href="#" onclick="showPage('about');toggleMenu();return false;">&#9658; About</a>
+    <a href="#" onclick="showPage('contact');toggleMenu();return false;">&#9658; Contact</a>
+  </div>
+</div>
+
+<div id="wrapper">
+
+  <!-- HOME -->
+  <div id="page-home" class="page active">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a></div>
+    <div class="box">
+      <div class="box-title">Welcome to BringingCFWtou</div>
+      <div class="box-content">
+        <p style="margin-top:0"><strong style="color:#ff9900;">BringingCFWtou</strong> is your go-to resource for custom firmware, region hacks, and device modifications. Free and open for everyone.</p>
+        <div class="info"><strong>[ MISSION ]</strong> &mdash; Your device. Your rules. No paywalls, no locked guides.</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-title">Current Projects</div>
+      <div class="box-content">
+        <div class="project-entry">
+          <h3><a href="#" onclick="showPage('dmp-cfw-a0');return false;">&#9658; DMP-BDT310EG &mdash; CFW A0.0.1-Pre1</a> &nbsp;<span class="label yellow">In Development</span></h3>
+          <p>Region-free (DVD + Blu-ray) + homebrew support. Currently in pre-release development.</p>
+        </div>
+        <div class="project-entry" style="opacity:0.5;">
+          <h3>&#9658; [More projects coming] &nbsp;<span class="label grey">Soon</span></h3>
+          <p>New CFW guides added as they get documented. Reach out via Contact to request a device.</p>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-title">News &amp; Updates</div>
+      <div class="box-content">
+        <div class="table-wrap">
+        <table class="data">
+          <tr><th>Date</th><th>Entry</th></tr>
+          <tr><td style="white-space:nowrap;">2026-03</td><td>DMP-BDT310EG &mdash; CFW <strong>A0.0.1-Pre1</strong> announced. In active development.</td></tr>
+          <tr><td style="white-space:nowrap;">2026-03</td><td>BringingCFWtou goes online. More projects in progress.</td></tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-title">Community &amp; Contact</div>
+      <div class="box-content" style="line-height:2.0;">
+        <span style="color:#7289da;">&#9679;</span> <strong>Discord:</strong> <a href="https://discord.gg/7etFNErqQm" target="_blank" style="color:#7289da;">discord.gg/7etFNErqQm</a><br>
+        <span style="color:#aaa;">&#9679;</span> <strong>E-Mail:</strong> <a href="mailto:mineventurehd@gmail.com">mineventurehd@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALL PROJECTS -->
+  <div id="page-projects" class="page">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a> &raquo; All Projects</div>
+    <div class="box">
+      <div class="box-title">All Projects</div>
+      <div class="box-content">
+        <div class="table-wrap">
+        <table class="data">
+          <tr><th>Device</th><th>Status</th><th>Link</th></tr>
+          <tr>
+            <td><strong>Panasonic DMP-BDT310EG</strong><br><small style="color:#888;">BringingCFWtou CFW A0.0.1-Pre1</small></td>
+            <td><span class="label yellow">In Dev</span></td>
+            <td><a href="#" onclick="showPage('dmp-cfw-a0');return false;">View</a></td>
+          </tr>
+          <tr style="opacity:0.5;"><td><em>More coming...</em></td><td><span class="label grey">Soon</span></td><td>&mdash;</td></tr>
+        </table>
+        </div>
+        <div class="info"><strong>[ NOTE ]</strong> &mdash; Request a device via <a href="#" onclick="showPage('contact');return false;">Contact</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DMP CFW A0.0.1-Pre1 -->
+  <div id="page-dmp-cfw-a0" class="page">
+    <div class="breadcrumb">
+      <a href="#" onclick="showPage('home');return false;">Home</a> &raquo;
+      <a href="#" onclick="showPage('projects');return false;">Projects</a> &raquo;
+      DMP CFW A0.0.1-Pre1
+    </div>
+
+    <div class="box">
+      <div class="box-title">BringingCFWtou CFW <span>// DMP-BDT310EG A0.0.1-Pre1</span></div>
+      <div class="box-content">
+        <p style="margin-top:0">Our own custom firmware for the <strong>Panasonic DMP-BDT310EG</strong>, developed in-house by BringingCFWtou.</p>
+        <div class="wip"><strong>[ WORK IN PROGRESS ]</strong> &mdash; Version <strong>A0.0.1-Pre1</strong> is in active pre-release development. <strong>Not yet available for download.</strong></div>
+      </div>
+    </div>
+
+    <!-- Accordion: Version Info -->
+    <div class="box" style="margin-bottom:0; border-bottom:none;">
+      <button class="accordion-toggle open" onclick="toggleAcc(this)">
+        Version Info <span class="arr">&#9660;</span>
+      </button>
+      <div class="accordion-body open">
+        <div style="padding:10px 12px;">
+        <div class="table-wrap">
+        <table class="data">
+          <tr><th>Property</th><th>Value</th></tr>
+          <tr><td><strong>CFW Name</strong></td><td>BringingCFWtou CFW</td></tr>
+          <tr><td><strong>Version</strong></td><td>A0.0.1-Pre1</td></tr>
+          <tr><td><strong>Target</strong></td><td>Panasonic DMP-BDT310EG (EG variants)</td></tr>
+          <tr><td><strong>Stage</strong></td><td><span class="label yellow">Pre-Release</span></td></tr>
+          <tr><td><strong>Developer</strong></td><td>BringingCFWtou</td></tr>
+          <tr><td><strong>Release</strong></td><td>TBA</td></tr>
+          <tr><td><strong>Download</strong></td><td><em style="color:#555;">Not yet available</em></td></tr>
+        </table>
+        </div>
+        </div>
+      </div>
+
+      <!-- Accordion: Planned Features -->
+      <button class="accordion-toggle open" onclick="toggleAcc(this)">
+        Planned Features <span class="arr">&#9660;</span>
+      </button>
+      <div class="accordion-body open">
+        <div style="padding:10px 12px;">
+        <div class="table-wrap">
+        <table class="data">
+          <tr><th>Feature</th><th>Status</th></tr>
+          <tr><td>Region-free DVD (1&ndash;6)</td><td><span class="label yellow">In Dev</span></td></tr>
+          <tr><td>Region-free Blu-ray (A/B/C)</td><td><span class="label yellow">In Dev</span></td></tr>
+          <tr><td>Homebrew / custom apps</td><td><span class="label yellow">In Dev</span></td></tr>
+          <tr><td>Installation guide</td><td><span class="label grey">Planned</span></td></tr>
+          <tr><td>Stable release (A1.0.0)</td><td><span class="label grey">Planned</span></td></tr>
+        </table>
+        </div>
+        <h2>Development Progress</h2>
+        <div class="progress-wrap"><div class="progress-bar"></div></div>
+        <div class="progress-label">A0.0.1-Pre1 &mdash; Early pre-release stage</div>
+        <div class="info" style="margin-top:10px;"><strong>[ NOTE ]</strong> &mdash; Feature list may change. Pre-release is internal only.</div>
+        </div>
+      </div>
+
+      <!-- Accordion: Changelog -->
+      <button class="accordion-toggle open" onclick="toggleAcc(this)">
+        Changelog <span class="arr">&#9660;</span>
+      </button>
+      <div class="accordion-body open">
+        <div style="padding:10px 12px;">
+        <div class="table-wrap">
+        <table class="data">
+          <tr><th>Version</th><th>Date</th><th>Notes</th></tr>
+          <tr><td><strong>A0.0.1-Pre1</strong></td><td>2026-03</td><td>Initial pre-release. Development started. No public build yet.</td></tr>
+        </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="page-about" class="page">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a> &raquo; About</div>
+    <div class="box">
+      <div class="box-title">About BringingCFWtou</div>
+      <div class="box-content">
+        <p style="margin-top:0"><strong style="color:#ff9900;">BringingCFWtou</strong> is an independent project with a clear mission: make custom firmware, jailbreaks and region hacks accessible to everyone.</p>
+        <p>No paywalls. No Discord invite gates. No paid guides. Just honest, working documentation &mdash; and now our own CFW too.</p>
+        <div class="info"><strong>[ PHILOSOPHY ]</strong> &mdash; When you buy a device, it belongs to you. Software freedom isn&apos;t a luxury &mdash; it&apos;s a right.</div>
+        <p>All guides and software are used at your own risk. For educational purposes only.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="page-contact" class="page">
+    <div class="breadcrumb"><a href="#" onclick="showPage('home');return false;">Home</a> &raquo; Contact</div>
+    <div class="box">
+      <div class="box-title">Contact</div>
+      <div class="box-content">
+        <p style="margin-top:0">Got questions, corrections, or want to request a guide for a specific device?</p>
+        <div class="info"><strong>[ DEVICE REQUESTS ]</strong> &mdash; Include:<br>
+          &bull; Exact model name/number<br>
+          &bull; What you want to achieve<br>
+          &bull; Current firmware version if known</div>
+        <p>Contact via our <a href="https://discord.gg/7etFNErqQm" target="_blank">Discord Server</a> or e-mail: <a href="mailto:mineventurehd@gmail.com">mineventurehd@gmail.com</a></p>
+        <div class="warning"><strong>[ NOTE ]</strong> &mdash; Personal use and educational purposes only. No commercial piracy questions.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="footer">
+  <strong>BringingCFWtou</strong> &mdash; Custom Firmware for Everyone<br>
+  for educational purposes only<br>
+  <a href="#" onclick="showPage('home');return false;">Home</a> ::
+  <a href="#" onclick="showPage('projects');return false;">Projects</a> ::
+  <a href="#" onclick="showPage('about');return false;">About</a> ::
+  <a href="#" onclick="showPage('contact');return false;">Contact</a><br>
+  <a href="desktop.html">Desktop version</a><br>
+  <a href="https://discord.gg/7etFNErqQm" target="_blank" style="color:#7289da;">Discord</a> :: <a href="mailto:mineventurehd@gmail.com">mineventurehd@gmail.com</a>
+</div>
+
+<script type="text/javascript">
+  function showPage(id) {
+    var pages = document.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+    var target = document.getElementById('page-' + id);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  function toggleMenu() {
+    var links = document.getElementById('mobile-nav-links');
+    links.style.display = (links.style.display === 'block') ? 'none' : 'block';
+  }
+  function toggleAcc(btn) {
+    btn.classList.toggle('open');
+    var body = btn.nextElementSibling;
+    if (body && body.classList.contains('accordion-body')) {
+      body.classList.toggle('open');
+    }
+  }
+</script>
+</body>
+</html>
